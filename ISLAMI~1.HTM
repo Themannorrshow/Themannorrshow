@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Islamic Dilemma 2026 — Register Now</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #C49228;
+  --gold-light: #D4A840;
+  --gold-dim: rgba(196,146,40,0.15);
+  --gold-border: rgba(196,146,40,0.30);
+  --black: #080806;
+  --dark: #0E0E0C;
+  --card: #141410;
+  --border: #232320;
+  --cream: #F2ECD8;
+  --white: #F5F0E8;
+  --gray: #7A7870;
+  --light-gray: #B8B4A4;
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Syne', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ── NAV ─────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 64px;
+  background: rgba(8,8,6,0.95); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 17px; font-weight: 400; letter-spacing: 0.06em;
+  color: var(--white); text-decoration: none; font-style: italic;
+}
+.nav-logo span { color: var(--gold); font-style: normal; font-family: var(--font-mono); font-size: 13px; }
+.nav-mono { font-family: var(--font-mono); font-size: 11px; color: var(--gray); letter-spacing: 0.14em; }
+.nav-cta {
+  background: var(--gold); color: var(--black);
+  padding: 9px 22px; font-family: var(--font-mono);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--gold-light); }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; background: none; border: none; padding: 4px;
+}
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav {
+  display: none; position: fixed; top: 64px; left: 0; right: 0;
+  background: rgba(8,8,6,0.99); padding: 20px 24px 28px;
+  z-index: 99; border-bottom: 1px solid var(--border);
+  flex-direction: column; gap: 0;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  color: var(--light-gray); text-decoration: none; font-size: 15px;
+  font-weight: 500; padding: 14px 0; border-bottom: 1px solid var(--border);
+  transition: color 0.2s;
+}
+.mobile-nav a:hover { color: var(--gold); }
+.mobile-nav a:last-child { border-bottom: none; }
+
+/* ── GRID TEXTURE ────────────────────────────────── */
+.grid-texture {
+  background-image:
+    linear-gradient(rgba(196,146,40,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196,146,40,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero {
+  position: relative; min-height: 100vh; padding-top: 64px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    180deg,
+    #0A0A08 0%,
+    #0A0A08 20%,
+    #1A1408 45%,
+    #3D2A04 68%,
+    #C49228 100%
+  );
+}
+.hero-bg::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(196,146,40,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196,146,40,0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+/* Subtle grain */
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.6; pointer-events: none;
+}
+
+/* TMS badge */
+.tms-badge {
+  position: absolute; top: 80px; right: 32px;
+  width: 52px; height: 52px; background: #CC2020;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 15px; font-weight: 400;
+  color: var(--white); font-style: italic; letter-spacing: -0.03em;
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 48px 0; max-width: 1000px; width: 100%;
+}
+.hero-subtitle {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 400;
+  color: var(--gold); letter-spacing: 0.22em; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero-title-intro {
+  font-family: var(--font-display);
+  font-size: clamp(72px, 13vw, 160px);
+  font-weight: 400; line-height: 0.88;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  text-shadow: 0 4px 40px rgba(0,0,0,0.6);
+}
+.hero-title-main {
+  font-family: var(--font-display);
+  font-size: clamp(72px, 13vw, 160px);
+  font-weight: 400; line-height: 0.88;
+  letter-spacing: -0.01em;
+  color: var(--gold);
+  text-shadow: 0 4px 60px rgba(196,146,40,0.4);
+  margin-bottom: 28px;
+}
+
+/* Date & info strip */
+.hero-strip {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 0; margin-bottom: 0;
+  border-top: 1px solid rgba(196,146,40,0.3);
+}
+.hero-strip-item {
+  font-family: var(--font-mono); font-size: 13px;
+  color: rgba(245,240,232,0.75); letter-spacing: 0.08em;
+}
+.hero-strip-item strong { color: var(--white); font-weight: 500; }
+
+/* Stats bar */
+.stats-bar {
+  background: var(--gold);
+  display: flex; align-items: stretch;
+}
+.stat-block {
+  flex: 1; padding: 20px 28px;
+  border-right: 1px solid rgba(8,8,6,0.2);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.stat-block:last-child { border-right: none; }
+.stat-block-num {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px); font-weight: 400;
+  color: var(--black); line-height: 1; margin-bottom: 4px;
+  font-style: italic;
+}
+.stat-block-label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  color: rgba(8,8,6,0.65); letter-spacing: 0.16em; text-transform: uppercase;
+}
+
+/* ── WHAT YOU'LL LEARN ───────────────────────────── */
+.curriculum-wrap {
+  background: var(--dark); border-bottom: 1px solid var(--border);
+}
+.curriculum {
+  max-width: 1100px; margin: 0 auto; padding: 72px 48px;
+}
+.curriculum-header { margin-bottom: 48px; }
+.tag-label {
+  font-family: var(--font-mono); font-size: 11px; color: var(--gold);
+  letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px;
+  display: block;
+}
+.curriculum-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 54px); font-weight: 400;
+  line-height: 1.1; color: var(--white);
+}
+.curriculum-title em { color: var(--gold); font-style: italic; }
+.curriculum-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+}
+.curriculum-item {
+  background: var(--card); padding: 28px 24px;
+  border: 1px solid var(--border); position: relative; overflow: hidden;
+  transition: border-color 0.25s;
+}
+.curriculum-item:hover { border-color: var(--gold-border); }
+.curriculum-item::before {
+  content: attr(data-num);
+  position: absolute; top: 16px; right: 20px;
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--gold); letter-spacing: 0.1em; opacity: 0.7;
+}
+.curriculum-icon {
+  font-size: 24px; margin-bottom: 14px; display: block;
+}
+.curriculum-name {
+  font-family: var(--font-display); font-size: 20px; font-weight: 400;
+  color: var(--white); line-height: 1.2; margin-bottom: 8px; font-style: italic;
+}
+.curriculum-desc {
+  font-size: 13px; color: var(--gray); line-height: 1.7;
+}
+
+/* ── HOST SECTION ────────────────────────────────── */
+.host-wrap {
+  background: var(--black); border-bottom: 1px solid var(--border);
+}
+.host {
+  max-width: 1100px; margin: 0 auto; padding: 72px 48px;
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 72px; align-items: center;
+}
+.host-photo-block {
+  position: relative;
+}
+.host-photo-frame {
+  aspect-ratio: 3/4; background: var(--card);
+  border: 1px solid var(--border); overflow: hidden;
+  position: relative;
+}
+.host-photo-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(180deg, #1A1810 0%, #3D2A04 60%, #C49228 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  padding-bottom: 24px;
+}
+.host-photo-name {
+  font-family: var(--font-display); font-size: 28px; font-weight: 400;
+  color: var(--white); font-style: italic; text-align: center;
+}
+.host-photo-tag {
+  font-family: var(--font-mono); font-size: 10px; color: var(--gold);
+  letter-spacing: 0.2em; text-transform: uppercase; margin-top: 4px;
+}
+.host-badge {
+  position: absolute; bottom: -14px; right: -14px;
+  background: var(--gold); width: 80px; height: 80px;
+  border-radius: 50%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  font-family: var(--font-mono); font-size: 9px; font-weight: 500;
+  color: var(--black); letter-spacing: 0.08em; text-transform: uppercase;
+  text-align: center; line-height: 1.4;
+  border: 3px solid var(--black);
+}
+.host-right { }
+.host-pre {
+  font-family: var(--font-mono); font-size: 11px; color: var(--gold);
+  letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px;
+}
+.host-name {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 5vw, 64px); font-weight: 400;
+  line-height: 0.95; color: var(--white); margin-bottom: 24px;
+  font-style: italic;
+}
+.host-name span { color: var(--gold); font-style: normal; }
+.host-bio {
+  font-size: 15px; color: var(--light-gray); line-height: 1.85; margin-bottom: 16px;
+}
+.host-credentials {
+  display: flex; flex-direction: column; gap: 8px; margin-top: 24px;
+}
+.credential {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--gray); letter-spacing: 0.06em;
+}
+.credential::before { content: '—'; color: var(--gold); }
+
+/* ── REGISTRATION FORM ───────────────────────────── */
+.register-wrap {
+  background: var(--dark) url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 0L0 60M0 0l60 60' stroke='rgba(196,146,40,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+  border-bottom: 1px solid var(--border);
+}
+.register {
+  max-width: 1100px; margin: 0 auto; padding: 72px 48px;
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 72px; align-items: start;
+}
+.register-info { position: sticky; top: 80px; }
+.register-pre {
+  font-family: var(--font-mono); font-size: 11px; color: var(--gold);
+  letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px;
+}
+.register-title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4.5vw, 58px); font-weight: 400; font-style: italic;
+  line-height: 1.05; color: var(--white); margin-bottom: 20px;
+}
+.register-title em { color: var(--gold); font-style: normal; }
+.register-desc {
+  font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 32px;
+}
+.register-details {
+  display: flex; flex-direction: column; gap: 12px;
+}
+.register-detail {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 13px; color: var(--light-gray);
+}
+.register-detail-icon {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--gold); min-width: 16px; margin-top: 2px;
+}
+
+/* Form */
+.register-form {
+  background: var(--card); border: 1px solid var(--border);
+  padding: 40px; position: relative;
+}
+.register-form::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+}
+.form-title {
+  font-family: var(--font-display); font-size: 24px; font-weight: 400;
+  font-style: italic; color: var(--white); margin-bottom: 6px;
+}
+.form-subtitle {
+  font-family: var(--font-mono); font-size: 11px; color: var(--gray);
+  letter-spacing: 0.1em; margin-bottom: 32px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { margin-bottom: 18px; }
+.form-group.full { grid-column: 1 / -1; }
+.form-label {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase;
+  display: block; margin-bottom: 7px;
+}
+.form-input, .form-select, .form-textarea {
+  width: 100%; background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border); color: var(--white);
+  padding: 12px 14px; font-family: var(--font-body);
+  font-size: 14px; outline: none; transition: border-color 0.2s;
+  -webkit-appearance: none; appearance: none;
+}
+.form-input::placeholder { color: var(--gray); }
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--gold);
+  background: rgba(196,146,40,0.05);
+}
+.form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23C49228' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  cursor: pointer;
+}
+.form-select option { background: #0E0E0C; color: var(--white); }
+.form-textarea { resize: vertical; min-height: 90px; }
+.form-note {
+  font-family: var(--font-mono); font-size: 10px; color: var(--gray);
+  letter-spacing: 0.06em; margin-bottom: 20px; line-height: 1.6;
+}
+.form-submit {
+  width: 100%; background: var(--gold); color: var(--black);
+  padding: 16px; border: none; cursor: pointer;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  transition: background 0.2s, transform 0.15s;
+}
+.form-submit:hover { background: var(--gold-light); transform: translateY(-1px); }
+.form-divider {
+  border: none; border-top: 1px solid var(--border); margin: 20px 0;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+/* Field error */
+.field-error {
+  display: block; font-family: var(--font-mono); font-size: 10px;
+  color: #E88; letter-spacing: 0.06em; margin-top: 5px; min-height: 14px;
+}
+.form-input.invalid { border-color: rgba(180,40,40,0.6); }
+
+/* Success state */
+.form-success {
+  display: none; text-align: center; padding: 40px 20px;
+}
+.form-success-icon { font-size: 48px; margin-bottom: 16px; }
+.form-success-title {
+  font-family: var(--font-display); font-size: 28px; font-weight: 400;
+  font-style: italic; color: var(--gold); margin-bottom: 8px;
+}
+.form-success-text { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+/* ── TESTIMONIALS / SOCIAL PROOF ─────────────────── */
+.proof-wrap {
+  background: var(--black); border-bottom: 1px solid var(--border);
+  padding: 60px 48px;
+}
+.proof-inner { max-width: 1100px; margin: 0 auto; }
+.proof-label {
+  font-family: var(--font-mono); font-size: 11px; color: var(--gold);
+  letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 28px; display: block;
+}
+.proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.proof-card {
+  background: var(--card); border: 1px solid var(--border);
+  padding: 24px; transition: border-color 0.2s;
+}
+.proof-card:hover { border-color: var(--gold-border); }
+.proof-quote {
+  font-family: var(--font-display); font-size: 16px; font-weight: 400;
+  font-style: italic; color: var(--white); line-height: 1.6; margin-bottom: 16px;
+}
+.proof-author {
+  font-family: var(--font-mono); font-size: 10px; color: var(--gold);
+  letter-spacing: 0.12em; text-transform: uppercase;
+}
+
+/* ── FAQ ─────────────────────────────────────────── */
+.faq-wrap { max-width: 800px; margin: 0 auto; padding: 72px 48px; }
+.faq-item {
+  border-bottom: 1px solid var(--border); padding: 20px 0;
+  cursor: pointer;
+}
+.faq-q {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 16px;
+}
+.faq-question {
+  font-family: var(--font-body); font-size: 16px; font-weight: 600;
+  color: var(--white);
+}
+.faq-icon {
+  font-family: var(--font-mono); font-size: 18px;
+  color: var(--gold); flex-shrink: 0; transition: transform 0.3s;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-answer {
+  font-size: 14px; color: var(--gray); line-height: 1.8;
+  max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.2s;
+}
+.faq-item.open .faq-answer { max-height: 300px; padding-top: 14px; }
+
+/* ── FOOTER CTA ──────────────────────────────────── */
+.footer-cta {
+  background: var(--gold); padding: 56px 48px; text-align: center;
+}
+.footer-cta h2 {
+  font-family: var(--font-display); font-size: clamp(32px, 5vw, 56px);
+  font-weight: 400; font-style: italic; color: var(--black); margin-bottom: 10px;
+}
+.footer-cta p {
+  font-size: 15px; color: rgba(8,8,6,0.7); max-width: 440px;
+  margin: 0 auto 28px; line-height: 1.7;
+}
+.footer-cta-btn {
+  display: inline-block; background: var(--black); color: var(--gold);
+  padding: 16px 40px; font-family: var(--font-mono);
+  font-size: 12px; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s;
+}
+.footer-cta-btn:hover { background: #1a1a18; }
+
+/* ── FOOTER ──────────────────────────────────────── */
+footer {
+  background: var(--black); border-top: 1px solid var(--border);
+  padding: 36px 48px 20px;
+}
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-brand {
+  font-family: var(--font-display); font-size: 16px; font-weight: 400;
+  font-style: italic; color: var(--white);
+}
+.footer-brand span { color: var(--gold); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-family: var(--font-mono); font-size: 11px; color: var(--gray);
+  text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-copy {
+  font-family: var(--font-mono); font-size: 10px; color: var(--gray);
+  letter-spacing: 0.06em; width: 100%; margin-top: 16px;
+  padding-top: 16px; border-top: 1px solid var(--border);
+}
+
+/* ── ANIMATIONS ──────────────────────────────────── */
+.fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up:nth-child(2) { transition-delay: 0.08s; }
+.fade-up:nth-child(3) { transition-delay: 0.16s; }
+.fade-up:nth-child(4) { transition-delay: 0.24s; }
+.fade-up:nth-child(5) { transition-delay: 0.10s; }
+.fade-up:nth-child(6) { transition-delay: 0.18s; }
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media (max-width: 1024px) {
+  nav { padding: 0 28px; }
+  .hero-content { padding: 0 28px; }
+  .curriculum { padding: 56px 28px; }
+  .host { padding: 56px 28px; gap: 40px; }
+  .register { padding: 56px 28px; gap: 40px; }
+  .proof-wrap { padding: 48px 28px; }
+  .faq-wrap { padding: 56px 28px; }
+  .footer-cta { padding: 48px 28px; }
+  footer { padding: 32px 28px 18px; }
+  .curriculum-grid { grid-template-columns: 1fr 1fr; }
+  .proof-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; height: 58px; }
+  .mobile-nav { top: 58px; }
+  .nav-mono { display: none; }
+  nav .nav-cta { display: none; }
+  .hamburger { display: flex; }
+
+  .hero-content { padding: 0 20px; }
+  .hero-title-intro, .hero-title-main { font-size: clamp(60px, 18vw, 90px); }
+  .hero-strip { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .hero-strip-item { font-size: 12px; }
+  .stats-bar { flex-direction: column; }
+  .stat-block { border-right: none; border-bottom: 1px solid rgba(8,8,6,0.2); padding: 16px 20px; }
+  .stat-block:last-child { border-bottom: none; }
+  .tms-badge { top: 72px; right: 20px; width: 44px; height: 44px; font-size: 13px; }
+
+  .curriculum { padding: 48px 20px; }
+  .curriculum-grid { grid-template-columns: 1fr; }
+
+  .host { padding: 48px 20px; grid-template-columns: 1fr; gap: 36px; }
+  .host-photo-block { max-width: 280px; }
+
+  .register { padding: 48px 20px; grid-template-columns: 1fr; gap: 36px; }
+  .register-info { position: static; }
+  .register-form { padding: 28px 20px; }
+  .form-grid { grid-template-columns: 1fr; }
+
+  .proof-wrap { padding: 44px 20px; }
+  .proof-grid { grid-template-columns: 1fr; }
+
+  .faq-wrap { padding: 48px 20px; }
+  .footer-cta { padding: 44px 20px; }
+  footer { padding: 28px 20px 16px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+
+@media (max-width: 480px) {
+  .hero-title-intro, .hero-title-main { font-size: 58px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">The <span>TMS</span> Event</a>
+  <span class="nav-mono">Islamic Dilemma · July 2026</span>
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="#register" class="nav-cta">Register Free</a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#curriculum">Curriculum</a>
+  <a href="#host">About Mannorr</a>
+  <a href="#register">Register</a>
+  <a href="#faq">FAQ</a>
+  <a href="#register" style="color:var(--gold);font-weight:700;">→ Register Free</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="tms-badge"><em>TMS</em></div>
+  <div class="hero-content">
+    <div class="hero-subtitle">Introduction to Islam Apologetics</div>
+    <div class="hero-title-intro">Islamic</div>
+    <div class="hero-title-main">Dilemma</div>
+    <div class="hero-strip">
+      <span class="hero-strip-item"><strong>July 2026</strong> · 3-Day Live Event</span>
+      <span class="hero-strip-item">with <strong>Mannorr</strong> · The Mannorr Show</span>
+      <span class="hero-strip-item"><strong>15 Hours</strong> of total teaching</span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-block">
+    <div class="stat-block-num">3</div>
+    <div class="stat-block-label">Days of Teaching</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-block-num">15</div>
+    <div class="stat-block-label">Hours Total</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-block-num">6</div>
+    <div class="stat-block-label">Core Topics</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-block-num">Free</div>
+    <div class="stat-block-label">Registration</div>
+  </div>
+</div>
+
+<!-- CURRICULUM -->
+<div class="curriculum-wrap" id="curriculum">
+  <div class="curriculum">
+    <div class="curriculum-header">
+      <span class="tag-label">What You'll Learn</span>
+      <h2 class="curriculum-title">Six Topics.<br><em>15 Hours. 3 Days.</em></h2>
+    </div>
+    <div class="curriculum-grid">
+      <div class="curriculum-item fade-up" data-num="01">
+        <span class="curriculum-icon">📜</span>
+        <div class="curriculum-name">Who Is Mohammed?</div>
+        <div class="curriculum-desc">A deep examination of the historical figure of Mohammed — his life, his claims, and the evidence that challenges the Islamic narrative.</div>
+      </div>
+      <div class="curriculum-item fade-up" data-num="02">
+        <span class="curriculum-icon">📖</span>
+        <div class="curriculum-name">History of Islam</div>
+        <div class="curriculum-desc">From the cave of Hira to the sword — tracing the origins and rapid spread of Islam through the lens of primary historical sources.</div>
+      </div>
+      <div class="curriculum-item fade-up" data-num="03">
+        <span class="curriculum-icon">⚖️</span>
+        <div class="curriculum-name">The Law and the Prophets</div>
+        <div class="curriculum-desc">What do the Old Testament Scriptures say about the coming of Jesus — and how do they refute the Islamic account of prophetic succession?</div>
+      </div>
+      <div class="curriculum-item fade-up" data-num="04">
+        <span class="curriculum-icon">✝️</span>
+        <div class="curriculum-name">Yeshua — The God Man</div>
+        <div class="curriculum-desc">Who is Jesus in the Gospels vs. the Quran? A side-by-side analysis of the biblical Christ and the Quranic Isa — and why the difference is everything.</div>
+      </div>
+      <div class="curriculum-item fade-up" data-num="05">
+        <span class="curriculum-icon">🔍</span>
+        <div class="curriculum-name">The Islamic Dilemma</div>
+        <div class="curriculum-desc">The theological and historical contradictions within the Quran and Hadith — examined clearly, respectfully, and without compromise.</div>
+      </div>
+      <div class="curriculum-item fade-up" data-num="06">
+        <span class="curriculum-icon">🌍</span>
+        <div class="curriculum-name">Islam and Other Religions</div>
+        <div class="curriculum-desc">How does Islam position itself against Christianity, Judaism, and other faiths? And what does the evidence actually say?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOST -->
+<div class="host-wrap" id="host">
+  <div class="host">
+    <div class="host-photo-block">
+      <div class="host-photo-frame">
+        <div class="host-photo-placeholder">
+          <div class="host-photo-name">Mannorr</div>
+          <div class="host-photo-tag">@_mannorr</div>
+        </div>
+      </div>
+      <div class="host-badge">15 hrs<br>of teaching</div>
+    </div>
+    <div class="host-right">
+      <div class="host-pre">Your Host</div>
+      <h2 class="host-name">With<br><span>Mannorr</span></h2>
+      <p class="host-bio">
+        Mannorr is the host of The Mannorr Show — a platform for honest, unfiltered conversations about life, morals, relationships, and faith. Known for breaking down complex theological questions with clarity and courage, Mannorr has built a growing audience through his YouTube series <em>Exposing Islam</em> and the ongoing 30-day Instagram series: <em>The Islamic Dilemma</em>.
+      </p>
+      <p class="host-bio">
+        This live event is an extension of that work — three days to go deeper than a YouTube video ever could. Every claim is sourced. Every argument is direct.
+      </p>
+      <div class="host-credentials">
+        <div class="credential">Host of The Mannorr Show on YouTube</div>
+        <div class="credential">Creator of the Islamic Dilemma 30-Day Series</div>
+        <div class="credential">Christian apologist · 4 Exposing Islam episodes</div>
+        <div class="credential">Passionate about truth, clarity, and the Gospel</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTRATION FORM -->
+<div class="register-wrap" id="register">
+  <div class="register">
+    <div class="register-info">
+      <div class="register-pre">Secure Your Spot</div>
+      <h2 class="register-title">Register for<br><em>Islamic<br>Dilemma</em><br>2026</h2>
+      <p class="register-desc">Registration is completely free. Seats are limited — sign up now to receive your confirmation, event details, and pre-event materials.</p>
+      <div class="register-details">
+        <div class="register-detail">
+          <span class="register-detail-icon">📅</span>
+          <span>July 2026 · Exact dates sent upon registration</span>
+        </div>
+        <div class="register-detail">
+          <span class="register-detail-icon">⏱</span>
+          <span>3 Days · 15 Hours total · Online event</span>
+        </div>
+        <div class="register-detail">
+          <span class="register-detail-icon">🆓</span>
+          <span>Free to attend · No credit card required</span>
+        </div>
+        <div class="register-detail">
+          <span class="register-detail-icon">📲</span>
+          <span>Hosted by Mannorr · The Mannorr Show</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="register-form" id="register-form-wrap">
+      <div id="form-content">
+        <div class="form-title">Register Now</div>
+        <div class="form-subtitle">// free · 2 minutes · instant confirmation</div>
+
+        <!-- Formspree error banner (hidden by default) -->
+        <div id="form-error-banner" style="display:none;background:rgba(180,40,40,0.12);border:1px solid rgba(180,40,40,0.35);color:#E88;padding:12px 16px;margin-bottom:18px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;line-height:1.6;"></div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="firstName">First Name *</label>
+            <input type="text" class="form-input" id="firstName" name="firstName" placeholder="Emmanuel" autocomplete="given-name" required>
+            <span class="field-error" id="err-firstName"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lastName">Last Name *</label>
+            <input type="text" class="form-input" id="lastName" name="lastName" placeholder="Adeyemi" autocomplete="family-name" required>
+            <span class="field-error" id="err-lastName"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address *</label>
+          <input type="email" class="form-input" id="email" name="email" placeholder="you@email.com" autocomplete="email" required>
+          <span class="field-error" id="err-email"></span>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone (optional)</label>
+            <input type="tel" class="form-input" id="phone" name="phone" placeholder="+234 800 000 0000" autocomplete="tel">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="country">Country *</label>
+            <select class="form-select form-input" id="country" name="country" required>
+              <option value="" disabled selected>Select country</option>
+              <option>Nigeria</option>
+              <option>Ghana</option>
+              <option>Kenya</option>
+              <option>South Africa</option>
+              <option>United Kingdom</option>
+              <option>United States</option>
+              <option>Canada</option>
+              <option>Australia</option>
+              <option>Other</option>
+            </select>
+            <span class="field-error" id="err-country"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="background">Faith Background *</label>
+          <select class="form-select form-input" id="background" name="background" required>
+            <option value="" disabled selected>Your faith background</option>
+            <option>Christian (born-again)</option>
+            <option>Christian (cultural / nominal)</option>
+            <option>Muslim (currently)</option>
+            <option>Ex-Muslim / questioning Islam</option>
+            <option>No religious affiliation</option>
+            <option>Other</option>
+          </select>
+          <span class="field-error" id="err-background"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="source">How did you hear about this? (optional)</label>
+          <textarea class="form-textarea form-input" id="source" name="source" placeholder="YouTube, Instagram, a friend..."></textarea>
+        </div>
+
+        <hr class="form-divider">
+        <p class="form-note">// By registering, you agree to receive event updates from The Mannorr Show. We do not share your information. Unsubscribe anytime.</p>
+
+        <button class="form-submit" id="submit-btn" onclick="handleSubmit()">
+          Reserve My Spot →
+        </button>
+      </div>
+
+      <div class="form-success" id="form-success">
+        <div class="form-success-icon">✦</div>
+        <div class="form-success-title">You're Registered!</div>
+        <p class="form-success-text">
+          Check your inbox for a confirmation email.<br>
+          Event details and pre-reading materials will be sent closer to July 2026.<br><br>
+          <span style="color:var(--gold);font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;">FOLLOW @_MANNORR FOR UPDATES</span>
+        </p>
+        <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="https://www.youtube.com/@THEMANNORRSHOW" target="_blank" style="background:var(--gold);color:var(--black);padding:12px 24px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">Watch on YouTube</a>
+          <a href="https://www.instagram.com/_mannorr" target="_blank" style="border:1px solid var(--gold-border);color:var(--gold);padding:12px 24px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">Follow on Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL PROOF -->
+<div class="proof-wrap">
+  <div class="proof-inner">
+    <span class="proof-label">// What people are saying</span>
+    <div class="proof-grid">
+      <div class="proof-card fade-up">
+        <div class="proof-quote">"Mannorr explained what I'd been confused about for years. This series changed how I have conversations with my Muslim friends."</div>
+        <div class="proof-author">— YouTube viewer, Nigeria</div>
+      </div>
+      <div class="proof-card fade-up">
+        <div class="proof-quote">"As an ex-Muslim, I wish content like this existed when I was searching. Clear, respectful, and honest."</div>
+        <div class="proof-author">— Instagram follower, Ghana</div>
+      </div>
+      <div class="proof-card fade-up">
+        <div class="proof-quote">"The Exposing Islam series is the most thorough apologetics content for Africans I've ever seen. This event is going to be historic."</div>
+        <div class="proof-author">— YouTube subscriber</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-wrap" id="faq">
+  <span class="tag-label" style="display:block;margin-bottom:16px;">// Frequently Asked</span>
+  <h2 style="font-family:var(--font-display);font-size:clamp(28px,4vw,44px);font-weight:400;font-style:italic;color:var(--white);margin-bottom:36px;">Questions</h2>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span class="faq-question">Is the event really free?</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">Yes — registration is completely free. No credit card, no hidden fees. Mannorr's mission is to make this teaching as accessible as possible.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span class="faq-question">Where will the event take place?</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">The event will be held online. Registered attendees will receive a link and schedule closer to the event date in July 2026.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span class="faq-question">Do I need to know anything about Islam beforehand?</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">No prior knowledge required. The event starts from the foundations and builds systematically. Whether you're a new believer or an experienced apologist, you'll find value here.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span class="faq-question">Will sessions be recorded?</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">Registered attendees may receive access to recordings — details will be confirmed via email. Register now to be notified.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span class="faq-question">Is this anti-Muslim?</span>
+      <span class="faq-icon">+</span>
+    </div>
+    <div class="faq-answer">No. The Islamic Dilemma is an examination of the evidence — historical, theological, and textual. Muslims are loved by God. This event exists precisely because we believe that. Every attendee is welcome, including Muslims who want to engage the material honestly.</div>
+  </div>
+</div>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta">
+  <h2>Seats Are Limited.</h2>
+  <p>This is a free event — but space is not unlimited. Register now to secure your spot and receive early access to pre-event materials.</p>
+  <a href="#register" class="footer-cta-btn">Register Free →</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">The <span>Mannorr</span> Show</div>
+    <div class="footer-links">
+      <a href="https://www.youtube.com/@THEMANNORRSHOW" target="_blank">YouTube</a>
+      <a href="https://www.instagram.com/_mannorr" target="_blank">Instagram</a>
+      <a href="mannorr-show.html">Back to Main Site</a>
+    </div>
+    <div class="footer-copy">© 2026 The Mannorr Show · Islamic Dilemma Event · All rights reserved</div>
+  </div>
+</footer>
+
+<script>
+// ── HAMBURGER ────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobile-nav');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open');
+});
+document.querySelectorAll('.mobile-nav a').forEach(a => {
+  a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileNav.classList.remove('open'); });
+});
+
+// ── SCROLL NAV ───────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.background =
+    window.scrollY > 80 ? 'rgba(8,8,6,0.99)' : 'rgba(8,8,6,0.95)';
+});
+
+// ── SMOOTH SCROLL ────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+// ── FADE-UP OBSERVER ─────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// ── FAQ TOGGLE ───────────────────────────────────
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── FORM SUBMIT — Formspree AJAX ─────────────────
+// Submits as JSON to https://formspree.io/f/xpqeokod
+// Handles field-level errors returned by Formspree + network failures
+
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpqeokod';
+
+function clearErrors() {
+  document.querySelectorAll('.field-error').forEach(el => el.textContent = '');
+  document.querySelectorAll('.form-input').forEach(el => el.classList.remove('invalid'));
+  const banner = document.getElementById('form-error-banner');
+  banner.style.display = 'none';
+  banner.textContent = '';
+}
+
+function showFieldError(fieldId, msg) {
+  const errEl = document.getElementById('err-' + fieldId);
+  const inputEl = document.getElementById(fieldId);
+  if (errEl) errEl.textContent = msg;
+  if (inputEl) inputEl.classList.add('invalid');
+}
+
+function showBanner(msg) {
+  const b = document.getElementById('form-error-banner');
+  b.textContent = msg;
+  b.style.display = 'block';
+  b.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+async function handleSubmit() {
+  clearErrors();
+
+  const fields = {
+    firstName:  document.getElementById('firstName').value.trim(),
+    lastName:   document.getElementById('lastName').value.trim(),
+    email:      document.getElementById('email').value.trim(),
+    phone:      document.getElementById('phone').value.trim(),
+    country:    document.getElementById('country').value,
+    background: document.getElementById('background').value,
+    source:     document.getElementById('source').value.trim(),
+  };
+
+  // Client-side validation
+  let hasErrors = false;
+  if (!fields.firstName) { showFieldError('firstName', 'First name is required'); hasErrors = true; }
+  if (!fields.lastName)  { showFieldError('lastName',  'Last name is required');  hasErrors = true; }
+  if (!fields.email)     { showFieldError('email',     'Email is required');       hasErrors = true; }
+  else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email)) {
+    showFieldError('email', 'Please enter a valid email address'); hasErrors = true;
+  }
+  if (!fields.country)    { showFieldError('country',    'Please select a country');          hasErrors = true; }
+  if (!fields.background) { showFieldError('background', 'Please select your background');    hasErrors = true; }
+  if (hasErrors) return;
+
+  const btn = document.getElementById('submit-btn');
+  btn.textContent = 'Registering...';
+  btn.disabled = true;
+
+  try {
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify(fields),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Success — show the custom success state
+      document.getElementById('form-content').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      // Formspree returned validation errors
+      btn.textContent = 'Reserve My Spot →';
+      btn.disabled = false;
+
+      if (data.errors && data.errors.length > 0) {
+        data.errors.forEach(err => {
+          if (err.field) showFieldError(err.field, err.message);
+          else showBanner(err.message || 'Something went wrong. Please try again.');
+        });
+      } else {
+        showBanner(data.error || 'Submission failed. Please try again.');
+      }
+    }
+
+  } catch (err) {
+    btn.textContent = 'Reserve My Spot →';
+    btn.disabled = false;
+    showBanner('Network error — please check your connection and try again.');
+  }
+}
+
+// Allow Enter key to submit from text/email inputs
+document.querySelectorAll('.form-input:not(textarea):not(select)').forEach(input => {
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') handleSubmit(); });
+});
+
+// Clear field error on change
+document.querySelectorAll('.form-input').forEach(input => {
+  input.addEventListener('input', () => {
+    const id = input.id;
+    const errEl = document.getElementById('err-' + id);
+    if (errEl) errEl.textContent = '';
+    input.classList.remove('invalid');
+  });
+});
+</script>
+</body>
+</html>

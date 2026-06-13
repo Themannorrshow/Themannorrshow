@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE MANNORR SHOW — Truth. Morals. Life.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold:        #C49228;
+  --gold-light:  #D4A840;
+  --gold-dim:    rgba(196,146,40,0.12);
+  --gold-border: rgba(196,146,40,0.28);
+  --black:       #080806;
+  --dark:        #0E0E0C;
+  --card:        #141410;
+  --border:      #232320;
+  --cream:       #F2ECD8;
+  --white:       #F5F0E8;
+  --gray:        #7A7870;
+  --light-gray:  #B8B4A4;
+  --font-display:'Instrument Serif', Georgia, serif;
+  --font-body:   'Syne', system-ui, sans-serif;
+  --font-mono:   'DM Mono', 'Courier New', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--black); color: var(--white); overflow-x: hidden; }
+
+/* ── NAV ──────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px; height: 64px;
+  background: rgba(8,8,6,0.95); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+.nav-logo {
+  font-family: var(--font-display); font-style: italic;
+  font-size: 18px; color: var(--white); text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-logo span { color: var(--gold); font-style: normal; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { font-family: var(--font-body); color: var(--light-gray); text-decoration: none; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; transition: color 0.2s; }
+.nav-links a:hover { color: var(--white); }
+.nav-right { display: flex; align-items: center; gap: 14px; }
+.nav-cta {
+  background: var(--gold); color: var(--black);
+  padding: 9px 22px; font-family: var(--font-mono);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+  text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s; white-space: nowrap;
+}
+.nav-cta:hover { background: var(--gold-light); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--white); transition: all 0.3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mobile-nav {
+  display: none; position: fixed; top: 64px; left: 0; right: 0;
+  background: rgba(8,8,6,0.99); padding: 20px 24px 28px; z-index: 999;
+  border-bottom: 1px solid var(--border); flex-direction: column; gap: 0;
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a { color: var(--light-gray); text-decoration: none; font-size: 15px; font-weight: 500; padding: 14px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+.mobile-nav a:hover { color: var(--gold); }
+.mobile-nav a:last-child { border-bottom: none; color: var(--gold); font-weight: 700; }
+
+/* ── HERO ──────────────────────────────────────────── */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  overflow: hidden; padding-top: 64px;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    180deg,
+    #080806 0%, #080806 25%,
+    #141008 50%, #2A1E04 72%,
+    #C49228 100%
+  );
+}
+.hero-bg::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(196,146,40,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(196,146,40,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.5; pointer-events: none;
+}
+/* TMS badge */
+.tms-badge {
+  position: absolute; top: 80px; right: 48px; z-index: 3;
+  width: 52px; height: 52px; background: #CC2020; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 14px; color: var(--white); font-style: italic;
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: flex-end; gap: 48px;
+  max-width: 1400px; margin: 0 auto;
+  padding: 0 48px; width: 100%;
+}
+.hero-left { padding-bottom: 4px; }
+.hero-eyebrow {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 400;
+  color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--gold); flex-shrink: 0; }
+.hero-name {
+  font-family: var(--font-display); font-style: italic;
+  font-size: clamp(72px, 10vw, 140px);
+  font-weight: 400; line-height: 0.88; color: var(--white);
+  text-shadow: 0 4px 40px rgba(0,0,0,0.5);
+}
+.hero-name-gold { color: var(--gold); font-style: normal; }
+.hero-tagline {
+  font-size: clamp(13px, 1.3vw, 16px); color: var(--gray);
+  line-height: 1.8; margin: 22px 0 32px; max-width: 440px;
+  border-left: 2px solid var(--gold); padding-left: 18px;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--gold); color: var(--black);
+  padding: 14px 28px; font-family: var(--font-mono);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-secondary {
+  background: transparent; color: var(--white);
+  padding: 13px 26px; font-family: var(--font-mono);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; border: 1px solid var(--border);
+  transition: border-color 0.2s, color 0.2s;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-secondary:hover { border-color: var(--gold-border); color: var(--gold); }
+
+/* Hero video */
+.hero-right { position: relative; padding-bottom: 4px; }
+.hero-video-frame {
+  position: relative; overflow: hidden; aspect-ratio: 16/9;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.7), 0 0 0 1px var(--border);
+}
+.hero-video-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+.hero-video-label {
+  position: absolute; top: -13px; left: 18px;
+  background: var(--gold); color: var(--black);
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; padding: 4px 12px;
+}
+
+/* Hero strip */
+.hero-strip {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  padding: 18px 48px; max-width: 1400px; margin: 0 auto; width: 100%;
+  border-top: 1px solid var(--gold-border); gap: 12px;
+}
+.hero-strip-item {
+  font-family: var(--font-mono); font-size: 12px;
+  color: rgba(245,240,232,0.65); letter-spacing: 0.06em;
+}
+.hero-strip-item strong { color: var(--white); font-weight: 500; }
+
+/* Stats gold bar */
+.stats-bar {
+  background: var(--gold); display: flex; align-items: stretch;
+}
+.stat-block {
+  flex: 1; padding: 18px 32px; border-right: 1px solid rgba(8,8,6,0.2);
+  display: flex; flex-direction: column; justify-content: center;
+}
+.stat-block:last-child { border-right: none; }
+.stat-block-num {
+  font-family: var(--font-display); font-style: italic;
+  font-size: clamp(24px, 3.5vw, 38px); color: var(--black); line-height: 1; margin-bottom: 3px;
+}
+.stat-block-label {
+  font-family: var(--font-mono); font-size: 10px;
+  color: rgba(8,8,6,0.6); letter-spacing: 0.14em; text-transform: uppercase;
+}
+
+/* ── SHARED SECTION ─────────────────────────────── */
+.section-wrap { background: var(--dark); border-bottom: 1px solid var(--border); }
+.section-wrap.alt { background: var(--black); }
+section { padding: 68px 48px; max-width: 1400px; margin: 0 auto; }
+.section-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 36px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
+  gap: 16px; flex-wrap: wrap;
+}
+.tag-label {
+  font-family: var(--font-mono); font-size: 11px; color: var(--gold);
+  letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; display: block;
+}
+.section-title {
+  font-family: var(--font-display); font-style: italic;
+  font-size: clamp(24px, 2.8vw, 36px); color: var(--white); font-weight: 400;
+}
+.section-title em { color: var(--gold); font-style: normal; }
+.section-link {
+  font-family: var(--font-mono); color: var(--gold); text-decoration: none;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; white-space: nowrap; transition: color 0.2s;
+}
+.section-link:hover { color: var(--gold-light); }
+.section-link::after { content: ' →'; }
+
+/* ── FEATURED SERIES ───────────────────────────── */
+.series-card { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.series-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--gold); color: var(--black);
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; padding: 5px 12px; margin-bottom: 16px;
+}
+.series-title {
+  font-family: var(--font-display); font-style: italic;
+  font-size: clamp(38px, 5vw, 64px); font-weight: 400;
+  line-height: 0.95; margin-bottom: 16px;
+}
+.series-title em { color: var(--gold); font-style: normal; }
+.series-desc { color: var(--gray); font-size: 15px; line-height: 1.8; margin-bottom: 28px; max-width: 460px; }
+.series-meta { display: flex; gap: 28px; margin-bottom: 28px; }
+.series-meta-num { font-family: var(--font-display); font-style: italic; font-size: 30px; color: var(--gold); }
+.series-meta-label { font-family: var(--font-mono); font-size: 10px; color: var(--gray); letter-spacing: 0.12em; text-transform: uppercase; }
+.series-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.series-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.series-thumb {
+  position: relative; aspect-ratio: 16/9; overflow: hidden;
+  cursor: pointer; background: var(--card); text-decoration: none; display: block;
+}
+.series-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; filter: brightness(0.6) sepia(0.2); }
+.series-thumb:hover img { transform: scale(1.06); filter: brightness(0.85) sepia(0.1); }
+.series-thumb-overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 12px;
+  background: linear-gradient(0deg, rgba(8,8,6,0.9) 0%, transparent 55%);
+}
+.series-thumb-ep { font-family: var(--font-mono); font-size: 9px; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 3px; }
+.series-thumb-title { font-size: 12px; color: var(--white); font-weight: 600; line-height: 1.3; }
+.series-thumb-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%) scale(0.85);
+  width: 40px; height: 40px; background: rgba(196,146,40,0.92);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s, transform 0.3s;
+}
+.series-thumb:hover .series-thumb-play { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+.series-thumb-play::after { content: ''; border-left: 12px solid var(--black); border-top: 7px solid transparent; border-bottom: 7px solid transparent; margin-left: 3px; }
+
+/* ── EPISODES GRID ─────────────────────────────── */
+.episodes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.episode-card {
+  background: var(--card); border: 1px solid var(--border);
+  overflow: hidden; cursor: pointer;
+  transition: border-color 0.25s, transform 0.25s;
+  text-decoration: none; color: inherit; display: block;
+}
+.episode-card:hover { border-color: var(--gold-border); transform: translateY(-3px); }
+.episode-thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #0d0d0a; }
+.episode-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; filter: brightness(0.7) sepia(0.15); }
+.episode-card:hover .episode-thumb img { transform: scale(1.06); filter: brightness(0.9) sepia(0.05); }
+.episode-duration {
+  position: absolute; bottom: 8px; right: 8px;
+  background: rgba(8,8,6,0.88); color: var(--white);
+  font-family: var(--font-mono); font-size: 10px; padding: 2px 6px; letter-spacing: 0.04em;
+}
+.play-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; background: rgba(196,146,40,0.1); }
+.episode-card:hover .play-overlay { opacity: 1; }
+.play-circle { width: 46px; height: 46px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.play-circle::after { content: ''; border-left: 14px solid var(--black); border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 4px; }
+.episode-info { padding: 14px 16px 16px; }
+.episode-tag { font-family: var(--font-mono); font-size: 10px; color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 5px; }
+.episode-title { font-size: 14px; font-weight: 600; line-height: 1.45; color: var(--white); margin-bottom: 6px; }
+.episode-meta { font-family: var(--font-mono); font-size: 10px; color: var(--gray); letter-spacing: 0.04em; }
+/* Skeleton */
+.skeleton { background: linear-gradient(90deg, #1a1a18 25%, #222220 50%, #1a1a18 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+@keyframes shimmer { 0%{ background-position: 200% 0; } 100%{ background-position: -200% 0; } }
+.episode-card.loading .episode-thumb { height: 175px; }
+.episode-card.loading .episode-info div { height: 11px; margin-bottom: 9px; border-radius: 1px; }
+.episode-card.loading .episode-tag { width: 80px; }
+.episode-card.loading .episode-title { width: 90%; }
+.episode-card.loading .episode-meta { width: 55%; }
+/* Live badge */
+.live-badge {
+  font-family: var(--font-mono);
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--gold-dim); border: 1px solid var(--gold-border);
+  color: var(--gold); font-size: 10px; letter-spacing: 0.12em;
+  padding: 4px 10px; margin-left: 12px; text-transform: uppercase; vertical-align: middle;
+}
+.live-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 1.6s infinite; }
+@keyframes pulse { 0%,100%{ opacity:1; } 50%{ opacity:0.3; } }
+
+/* ── ABOUT ─────────────────────────────────────── */
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+.about-quote-mark { font-family: var(--font-display); font-size: 100px; color: var(--gold); opacity: 0.2; line-height: 0.6; margin-bottom: 18px; display: block; }
+.about-quote { font-family: var(--font-display); font-style: italic; font-size: clamp(24px, 3vw, 38px); font-weight: 400; line-height: 1.25; color: var(--white); }
+.about-quote em { color: var(--gold); font-style: normal; }
+.about-right p { color: var(--gray); font-size: 15px; line-height: 1.9; margin-bottom: 18px; }
+.about-topics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.topic-tag {
+  border: 1px solid var(--border); color: var(--light-gray);
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em;
+  padding: 6px 12px; text-transform: uppercase; transition: border-color 0.2s, color 0.2s;
+}
+.topic-tag:hover { border-color: var(--gold-border); color: var(--gold); }
+
+/* ── PLATFORMS ─────────────────────────────────── */
+.platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.platform-card {
+  background: var(--card); padding: 30px 26px;
+  display: flex; flex-direction: column;
+  border: 1px solid var(--border); text-decoration: none; color: inherit;
+  transition: border-color 0.25s, background 0.25s; position: relative; overflow: hidden;
+}
+.platform-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+.platform-card:hover { background: #1C1C18; border-color: var(--gold-border); }
+.platform-card:hover::before { transform: scaleX(1); }
+.platform-icon { font-size: 26px; margin-bottom: 14px; }
+.platform-name { font-family: var(--font-display); font-style: italic; font-size: 22px; color: var(--white); margin-bottom: 4px; }
+.platform-handle { font-family: var(--font-mono); font-size: 11px; color: var(--gold); letter-spacing: 0.06em; margin-bottom: 10px; }
+.platform-desc { font-size: 13px; color: var(--gray); line-height: 1.7; flex: 1; }
+.platform-arrow { margin-top: 20px; font-family: var(--font-mono); font-size: 11px; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* ── PROMO BANNER ──────────────────────────────── */
+.promo-wrap { background: var(--gold); padding: 0; }
+.promo-inner {
+  max-width: 1400px; margin: 0 auto; padding: 52px 48px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+}
+.promo-text { }
+.promo-pre { font-family: var(--font-mono); font-size: 10px; color: rgba(8,8,6,0.6); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 8px; }
+.promo-title { font-family: var(--font-display); font-style: italic; font-size: clamp(26px, 3.5vw, 42px); color: var(--black); font-weight: 400; line-height: 1.1; }
+.promo-actions { display: flex; gap: 10px; flex-wrap: wrap; flex-shrink: 0; }
+.btn-dark { background: var(--black); color: var(--gold); padding: 14px 28px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+.btn-dark:hover { background: #1a1a18; }
+.btn-outline-dark { background: transparent; color: var(--black); padding: 13px 26px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(8,8,6,0.3); transition: background 0.2s; }
+.btn-outline-dark:hover { background: rgba(8,8,6,0.08); }
+
+/* ── SUBSCRIBE ─────────────────────────────────── */
+.subscribe-wrap { background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 56px 48px; text-align: center; }
+.subscribe-wrap h2 { font-family: var(--font-display); font-style: italic; font-size: clamp(28px, 4vw, 48px); color: var(--white); margin-bottom: 10px; }
+.subscribe-wrap p { color: var(--gray); font-size: 14px; max-width: 440px; margin: 0 auto 28px; line-height: 1.7; }
+.subscribe-form { display: flex; max-width: 440px; margin: 0 auto; }
+.subscribe-form input { flex: 1; padding: 13px 16px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-right: none; color: var(--white); font-family: var(--font-body); font-size: 14px; outline: none; transition: border-color 0.2s; }
+.subscribe-form input::placeholder { color: var(--gray); }
+.subscribe-form input:focus { border-color: var(--gold-border); }
+.subscribe-form button { background: var(--gold); color: var(--black); padding: 13px 22px; border: none; cursor: pointer; font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.2s; white-space: nowrap; }
+.subscribe-form button:hover { background: var(--gold-light); }
+
+/* ── FOOTER ────────────────────────────────────── */
+footer { background: var(--black); border-top: 1px solid var(--border); padding: 40px 48px 22px; }
+.footer-inner { max-width: 1400px; margin: 0 auto; }
+.footer-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; padding-bottom: 28px; margin-bottom: 20px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+.footer-brand { font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--white); margin-bottom: 6px; }
+.footer-brand span { color: var(--gold); font-style: normal; }
+.footer-tagline { font-family: var(--font-mono); font-size: 11px; color: var(--gray); letter-spacing: 0.1em; }
+.footer-links { display: flex; gap: 44px; flex-wrap: wrap; }
+.footer-col h4 { font-family: var(--font-mono); font-size: 10px; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 14px; }
+.footer-col a { display: block; color: var(--gray); text-decoration: none; font-size: 13px; margin-bottom: 9px; transition: color 0.2s; }
+.footer-col a:hover { color: var(--white); }
+.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-copy { font-family: var(--font-mono); font-size: 10px; color: var(--gray); letter-spacing: 0.06em; }
+.footer-socials { display: flex; gap: 8px; }
+.footer-social { width: 34px; height: 34px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--gray); text-decoration: none; font-size: 13px; transition: border-color 0.2s, color 0.2s; }
+.footer-social:hover { border-color: var(--gold-border); color: var(--gold); }
+
+/* ── ANIMATIONS ────────────────────────────────── */
+.fade-up { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up:nth-child(2) { transition-delay: 0.08s; }
+.fade-up:nth-child(3) { transition-delay: 0.16s; }
+.fade-up:nth-child(4) { transition-delay: 0.24s; }
+.fade-up:nth-child(5) { transition-delay: 0.12s; }
+.fade-up:nth-child(6) { transition-delay: 0.20s; }
+
+/* ── RESPONSIVE ────────────────────────────────── */
+@media (max-width: 1024px) {
+  nav { padding: 0 28px; }
+  .tms-badge { right: 28px; }
+  .hero-content { padding: 0 28px; gap: 32px; }
+  .hero-strip { padding: 16px 28px; }
+  section { padding: 56px 28px; }
+  .series-card { gap: 40px; }
+  .about { gap: 48px; }
+  .platforms-grid { grid-template-columns: 1fr 1fr; }
+  .subscribe-wrap { padding: 48px 28px; }
+  .promo-inner { padding: 44px 28px; }
+  footer { padding: 36px 28px 20px; }
+  .episodes-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 0 20px; height: 58px; }
+  .mobile-nav { top: 58px; }
+  .tms-badge { top: 72px; right: 20px; width: 44px; height: 44px; font-size: 12px; }
+  nav .nav-links { display: none; }
+  nav .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .hero { min-height: auto; }
+  .hero-content { grid-template-columns: 1fr; gap: 0; padding: 36px 20px 0; }
+  .hero-right { order: -1; margin-bottom: 32px; }
+  .hero-name { font-size: clamp(64px, 18vw, 96px); }
+  .hero-tagline { font-size: 13px; margin: 16px 0 24px; }
+  .hero-actions { gap: 10px; }
+  .hero-strip { padding: 14px 20px; gap: 10px; }
+  .hero-strip-item { font-size: 11px; }
+  .stats-bar { flex-direction: row; flex-wrap: wrap; }
+  .stat-block { flex: 1 1 45%; border-bottom: 1px solid rgba(8,8,6,0.2); }
+  section { padding: 48px 20px; }
+  .series-card { grid-template-columns: 1fr; gap: 32px; }
+  .series-title { font-size: 38px; }
+  .series-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .episodes-grid { grid-template-columns: 1fr; gap: 2px; }
+  .about { grid-template-columns: 1fr; gap: 32px; }
+  .about-quote { font-size: 22px; }
+  .platforms-grid { grid-template-columns: 1fr; }
+  .promo-inner { padding: 36px 20px; flex-direction: column; }
+  .subscribe-wrap { padding: 44px 20px; }
+  .subscribe-form { flex-direction: column; }
+  .subscribe-form input { border-right: 1px solid var(--border); border-bottom: none; }
+  footer { padding: 32px 20px 18px; }
+  .footer-top { flex-direction: column; gap: 24px; }
+  .footer-links { gap: 24px; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .hero-name { font-size: 58px; }
+  .hero-actions { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  .series-btns { flex-direction: column; }
+  .series-btns .btn-primary, .series-btns .btn-secondary { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">The <span>TMS</span></a>
+  <ul class="nav-links">
+    <li><a href="#episodes">Episodes</a></li>
+    <li><a href="#series">Islamic Dilemma</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#platforms">Watch</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://www.youtube.com/@THEMANNORRSHOW?sub_confirmation=1" target="_blank" class="nav-cta">Subscribe</a>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#episodes" class="m-link">Episodes</a>
+  <a href="#series" class="m-link">The Islamic Dilemma</a>
+  <a href="#about" class="m-link">About</a>
+  <a href="#platforms" class="m-link">Where to Watch</a>
+  <a href="https://www.youtube.com/@THEMANNORRSHOW?sub_confirmation=1" target="_blank">Subscribe on YouTube →</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="tms-badge"><em>TMS</em></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">The Mannorr Show</div>
+      <h1 class="hero-name">
+        Man<br><span class="hero-name-gold">norr</span>
+      </h1>
+      <p class="hero-tagline">
+        Truth. Morals. Life. Exploring the questions that matter most — faith, relationships, culture, and the courage to think clearly in a world that rewards confusion.
+      </p>
+      <div class="hero-actions">
+        <a href="https://www.youtube.com/@THEMANNORRSHOW?sub_confirmation=1" target="_blank" class="btn-primary">▶ Watch on YouTube</a>
+        <a href="#series" class="btn-secondary">The Islamic Dilemma</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-video-label">Latest Episode</div>
+      <div class="hero-video-frame">
+        <iframe id="hero-video"
+          src="https://www.youtube.com/embed/_fmgTmWfdFE?rel=0&modestbranding=1"
+          title="Latest Episode" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </div>
+  <div class="hero-strip">
+    <span class="hero-strip-item"><strong>178+</strong> Subscribers</span>
+    <span class="hero-strip-item"><strong>27</strong> Videos Published</span>
+    <span class="hero-strip-item"><strong>30-Day</strong> Islamic Dilemma Series</span>
+    <span class="hero-strip-item"><strong>4</strong> Exposing Islam Episodes</span>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-block">
+    <div class="stat-block-num" id="stat-subs">178+</div>
+    <div class="stat-block-label">Subscribers</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-block-num">27</div>
+    <div class="stat-block-label">Videos</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-block-num">30</div>
+    <div class="stat-block-label">Day Series</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-block-num">4</div>
+    <div class="stat-block-label">Exposing Islam Eps</div>
+  </div>
+</div>
+
+<!-- FEATURED SERIES -->
+<div class="section-wrap" id="series">
+  <section>
+    <div class="series-card">
+      <div>
+        <div class="series-badge">📺 Featured Series</div>
+        <span class="tag-label">30-Episode Deep Dive</span>
+        <h2 class="series-title">The Islamic<br><em>Dilemma</em></h2>
+        <p class="series-desc">A 30-day examination of the historical, theological, and moral contradictions within Islam — and the evidence for who Jesus truly is. Every claim sourced. Every argument direct.</p>
+        <div class="series-meta">
+          <div><div class="series-meta-num">30</div><div class="series-meta-label">Days</div></div>
+          <div><div class="series-meta-num">4</div><div class="series-meta-label">YouTube Eps</div></div>
+          <div><div class="series-meta-num">∞</div><div class="series-meta-label">IG Posts</div></div>
+        </div>
+        <div class="series-btns">
+          <a href="https://www.youtube.com/@THEMANNORRSHOW/videos" target="_blank" class="btn-primary">Watch the Series</a>
+          <a href="https://www.instagram.com/_mannorr" target="_blank" class="btn-secondary">Follow on IG</a>
+        </div>
+      </div>
+      <div class="series-grid">
+        <a href="https://www.youtube.com/watch?v=ePMjFrWp1JY" target="_blank" class="series-thumb">
+          <img src="https://img.youtube.com/vi/ePMjFrWp1JY/maxresdefault.jpg" alt="Ep 1" loading="lazy" onerror="this.src='https://img.youtube.com/vi/ePMjFrWp1JY/hqdefault.jpg'">
+          <div class="series-thumb-overlay"><div class="series-thumb-ep">Ep. 01</div><div class="series-thumb-title">Cave of Hira</div></div>
+          <div class="series-thumb-play"></div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=w4HFMAChOQY" target="_blank" class="series-thumb">
+          <img src="https://img.youtube.com/vi/w4HFMAChOQY/maxresdefault.jpg" alt="Ep 2" loading="lazy" onerror="this.src='https://img.youtube.com/vi/w4HFMAChOQY/hqdefault.jpg'">
+          <div class="series-thumb-overlay"><div class="series-thumb-ep">Ep. 02</div><div class="series-thumb-title">Convenient Revelations</div></div>
+          <div class="series-thumb-play"></div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=6XhMBhPiGL0" target="_blank" class="series-thumb">
+          <img src="https://img.youtube.com/vi/6XhMBhPiGL0/maxresdefault.jpg" alt="Ep 3" loading="lazy" onerror="this.src='https://img.youtube.com/vi/6XhMBhPiGL0/hqdefault.jpg'">
+          <div class="series-thumb-overlay"><div class="series-thumb-ep">Ep. 03</div><div class="series-thumb-title">Satanic Verses</div></div>
+          <div class="series-thumb-play"></div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=_fmgTmWfdFE" target="_blank" class="series-thumb">
+          <img src="https://img.youtube.com/vi/_fmgTmWfdFE/maxresdefault.jpg" alt="Ep 4" loading="lazy" onerror="this.src='https://img.youtube.com/vi/_fmgTmWfdFE/hqdefault.jpg'">
+          <div class="series-thumb-overlay"><div class="series-thumb-ep">Ep. 04</div><div class="series-thumb-title">Peace to Sword</div></div>
+          <div class="series-thumb-play"></div>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- JULY 2026 EVENT PROMO BANNER -->
+<div class="promo-wrap">
+  <div class="promo-inner">
+    <div class="promo-text">
+      <div class="promo-pre">// Coming Soon · July 2026</div>
+      <div class="promo-title">The Islamic Dilemma<br>Live Event — 3 Days. 15 Hours.</div>
+    </div>
+    <div class="promo-actions">
+      <a href="islamic-dilemma-register.html" class="btn-dark">Register Free →</a>
+      <a href="islamic-dilemma-register.html#curriculum" class="btn-outline-dark">See Curriculum</a>
+    </div>
+  </div>
+</div>
+
+<!-- RECENT EPISODES -->
+<div class="section-wrap alt" id="episodes">
+  <section>
+    <div class="section-header">
+      <div>
+        <span class="tag-label">All Videos
+          <span class="live-badge"><span class="live-dot"></span>Live from YouTube</span>
+        </span>
+        <h2 class="section-title">Recent Episodes</h2>
+      </div>
+      <a href="https://www.youtube.com/@THEMANNORRSHOW/videos" target="_blank" class="section-link">View All</a>
+    </div>
+    <div class="episodes-grid" id="episodes-grid">
+      <div class="episode-card loading"><div class="episode-thumb skeleton"></div><div class="episode-info"><div class="episode-tag skeleton"></div><div class="episode-title skeleton"></div><div class="episode-meta skeleton"></div></div></div>
+      <div class="episode-card loading"><div class="episode-thumb skeleton"></div><div class="episode-info"><div class="episode-tag skeleton"></div><div class="episode-title skeleton"></div><div class="episode-meta skeleton"></div></div></div>
+      <div class="episode-card loading"><div class="episode-thumb skeleton"></div><div class="episode-info"><div class="episode-tag skeleton"></div><div class="episode-title skeleton"></div><div class="episode-meta skeleton"></div></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ABOUT -->
+<div class="section-wrap" id="about">
+  <section>
+    <div class="about">
+      <div>
+        <span class="about-quote-mark">"</span>
+        <p class="about-quote">The world rewards <em>confusion.</em> We're here to cut through it.</p>
+      </div>
+      <div class="about-right">
+        <span class="tag-label">About The Show</span>
+        <p>The Mannorr Show is a platform for honest, unfiltered conversations about life, morals, relationships, and faith. Mannorr believes that clear thinking is the first act of courage — and that most people are starving for it.</p>
+        <p>From apologetics to everyday relationships, from cultural commentary to theological deep-dives like The Islamic Dilemma — every episode is built on one commitment: telling the truth, even when it costs something.</p>
+        <div class="about-topics">
+          <span class="topic-tag">Apologetics</span>
+          <span class="topic-tag">Islam</span>
+          <span class="topic-tag">Relationships</span>
+          <span class="topic-tag">Morality</span>
+          <span class="topic-tag">Culture</span>
+          <span class="topic-tag">Faith</span>
+          <span class="topic-tag">Critical Thinking</span>
+          <span class="topic-tag">Truth</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PLATFORMS -->
+<div class="section-wrap alt" id="platforms">
+  <section>
+    <div class="section-header">
+      <div>
+        <span class="tag-label">Where to Find Us</span>
+        <h2 class="section-title">Watch · Follow · <em>Connect</em></h2>
+      </div>
+    </div>
+    <div class="platforms-grid">
+      <a href="https://www.youtube.com/@THEMANNORRSHOW" target="_blank" class="platform-card">
+        <div class="platform-icon">▶</div>
+        <div class="platform-name">YouTube</div>
+        <div class="platform-handle">@THEMANNORRSHOW</div>
+        <div class="platform-desc">Full episodes, series, conferences. Subscribe and hit the bell — new videos added regularly.</div>
+        <div class="platform-arrow">Watch Now →</div>
+      </a>
+      <a href="https://www.instagram.com/_mannorr" target="_blank" class="platform-card">
+        <div class="platform-icon">◉</div>
+        <div class="platform-name">Instagram</div>
+        <div class="platform-handle">@_mannorr</div>
+        <div class="platform-desc">Daily carousel posts from The Islamic Dilemma. 30 days, 30 truths. Every post sourced and shareable.</div>
+        <div class="platform-arrow">Follow Now →</div>
+      </a>
+      <a href="islamic-dilemma-register.html" class="platform-card">
+        <div class="platform-icon">📅</div>
+        <div class="platform-name">July 2026 Event</div>
+        <div class="platform-handle">Islamic Dilemma — Live</div>
+        <div class="platform-desc">3 Days. 15 Hours. Free registration. Join Mannorr for the most comprehensive Islamic apologetics event of the year.</div>
+        <div class="platform-arrow">Register Free →</div>
+      </a>
+    </div>
+  </section>
+</div>
+
+<!-- SUBSCRIBE -->
+<div class="subscribe-wrap">
+  <h2>Don't Miss an Episode</h2>
+  <p>Get notified when new episodes drop — no noise, just truth.</p>
+  <div class="subscribe-form">
+    <input type="email" placeholder="Your email address">
+    <button type="button">Subscribe</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">The <span>Mannorr</span> Show</div>
+        <div class="footer-tagline">Truth. Morals. Life.</div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Content</h4>
+          <a href="#episodes">Recent Episodes</a>
+          <a href="#series">The Islamic Dilemma</a>
+          <a href="https://www.youtube.com/@THEMANNORRSHOW/playlists" target="_blank">Playlists</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="https://www.youtube.com/@THEMANNORRSHOW" target="_blank">YouTube</a>
+          <a href="https://www.instagram.com/_mannorr" target="_blank">Instagram</a>
+        </div>
+        <div class="footer-col">
+          <h4>Events</h4>
+          <a href="islamic-dilemma-register.html">Islamic Dilemma 2026</a>
+          <a href="#about">About the Show</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 The Mannorr Show. All rights reserved.</div>
+      <div class="footer-socials">
+        <a href="https://www.youtube.com/@THEMANNORRSHOW" target="_blank" class="footer-social">▶</a>
+        <a href="https://www.instagram.com/_mannorr" target="_blank" class="footer-social">◉</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── HAMBURGER ─────────────────────────────────────
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobile-nav');
+hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileNav.classList.toggle('open'); });
+document.querySelectorAll('.m-link').forEach(a => { a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileNav.classList.remove('open'); }); });
+
+// ── STICKY NAV ────────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.background =
+    window.scrollY > 60 ? 'rgba(8,8,6,0.99)' : 'rgba(8,8,6,0.95)';
+});
+
+// ── SMOOTH SCROLL ─────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+// ── FADE-UP ───────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+
+// ── UTILS ─────────────────────────────────────────
+function timeAgo(d) {
+  const s = Math.floor((Date.now() - new Date(d)) / 1000);
+  if (s < 3600) return Math.floor(s/60) + 'm ago';
+  if (s < 86400) return Math.floor(s/3600) + 'h ago';
+  if (s < 604800) return Math.floor(s/86400) + ' days ago';
+  if (s < 2592000) return Math.floor(s/604800) + ' weeks ago';
+  if (s < 31536000) return Math.floor(s/2592000) + ' months ago';
+  return Math.floor(s/31536000) + ' years ago';
+}
+function getTag(t) {
+  const l = t.toLowerCase();
+  if (l.includes('islam') || l.includes('exposing') || l.includes('quran')) return 'Exposing Islam';
+  if (l.includes('conference') || l.includes('form and meaning')) return 'Conference';
+  if (l.includes('flyer') || l.includes('review')) return 'Culture Review';
+  return 'The Mannorr Show';
+}
+
+// ── LIVE EPISODES ─────────────────────────────────
+const CHANNEL_ID = 'UCu_WGDLqpdWivyzhaXod9-A';
+const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=' + CHANNEL_ID)}&count=9`;
+
+const FALLBACK = [
+  { id: '_fmgTmWfdFE', title: 'Exposing Islam | Ep. 4 — Peace to Sword',     tag: 'Exposing Islam',   meta: '12 days ago' },
+  { id: '6XhMBhPiGL0', title: 'Exposing Islam | Ep. 3 — Satanic Verses',     tag: 'Exposing Islam',   meta: '2 weeks ago' },
+  { id: 'w4HFMAChOQY', title: 'Exposing Islam | Ep. 2 — Convenient Revelations', tag: 'Exposing Islam', meta: '2 weeks ago' },
+  { id: 'ePMjFrWp1JY', title: 'Exposing Islam | Ep. 1 — Cave of Hira',       tag: 'Exposing Islam',   meta: '3 weeks ago' },
+  { id: 'YaRhcDb2Akk', title: 'Moses Bliss Challenge — Flyer Review',         tag: 'Culture Review',   meta: '2 months ago' },
+  { id: '9eCvz9YMxq8', title: 'Form & Meaning Conference — Day 1',            tag: 'Conference',       meta: '3 months ago' },
+];
+
+function buildCard(href, thumb, fallbackThumb, title, tag, meta) {
+  const card = document.createElement('a');
+  card.href = href; card.target = '_blank'; card.className = 'episode-card fade-up';
+  card.innerHTML = `
+    <div class="episode-thumb">
+      <img src="${thumb}" alt="${title}" loading="lazy" onerror="this.src='${fallbackThumb}'">
+      <div class="play-overlay"><div class="play-circle"></div></div>
+    </div>
+    <div class="episode-info">
+      <div class="episode-tag">${tag}</div>
+      <div class="episode-title">${title}</div>
+      <div class="episode-meta">${meta}</div>
+    </div>`;
+  return card;
+}
+
+async function loadVideos() {
+  const grid = document.getElementById('episodes-grid');
+  try {
+    const res = await fetch(API_URL, { cache: 'no-cache' });
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    if (data.status !== 'ok' || !data.items.length) throw new Error();
+
+    // Update hero video with latest
+    const latestId = new URL(data.items[0].link).searchParams.get('v');
+    if (latestId) document.getElementById('hero-video').src = `https://www.youtube.com/embed/${latestId}?rel=0&modestbranding=1`;
+
+    grid.innerHTML = '';
+    data.items.forEach(v => {
+      const id = new URL(v.link).searchParams.get('v');
+      if (!id) return;
+      const card = buildCard(v.link, `https://img.youtube.com/vi/${id}/maxresdefault.jpg`, `https://img.youtube.com/vi/${id}/hqdefault.jpg`, v.title, getTag(v.title), timeAgo(v.pubDate));
+      grid.appendChild(card); observer.observe(card);
+    });
+  } catch {
+    grid.innerHTML = '';
+    FALLBACK.forEach(v => {
+      const card = buildCard(`https://www.youtube.com/watch?v=${v.id}`, `https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`, `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`, v.title, v.tag, v.meta);
+      grid.appendChild(card); observer.observe(card);
+    });
+  }
+}
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+loadVideos();
+</script>
+</body>
+</html>
