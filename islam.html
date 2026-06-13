@@ -81,94 +81,15 @@ nav {
 .mobile-nav a:hover { color: var(--gold); }
 .mobile-nav a:last-child { border-bottom: none; }
 
-/* ── GRID TEXTURE ────────────────────────────────── */
-.grid-texture {
-  background-image:
-    linear-gradient(rgba(196,146,40,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(196,146,40,0.06) 1px, transparent 1px);
-  background-size: 60px 60px;
+/* ── HERO BANNER ─────────────────────────────────── */
+.hero-banner {
+  padding-top: 64px; /* clear fixed nav */
+  width: 100%; line-height: 0; background: var(--black);
 }
-
-/* ── HERO ─────────────────────────────────────────── */
-.hero {
-  position: relative; min-height: 100vh; padding-top: 64px;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  overflow: hidden;
+.hero-banner img {
+  width: 100%; height: auto; display: block;
+  max-height: calc(100vh - 64px); object-fit: cover; object-position: center top;
 }
-.hero-bg {
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    180deg,
-    #0A0A08 0%,
-    #0A0A08 20%,
-    #1A1408 45%,
-    #3D2A04 68%,
-    #C49228 100%
-  );
-}
-.hero-bg::before {
-  content: ''; position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(196,146,40,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(196,146,40,0.07) 1px, transparent 1px);
-  background-size: 56px 56px;
-}
-/* Subtle grain */
-.hero-bg::after {
-  content: ''; position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity: 0.6; pointer-events: none;
-}
-
-/* TMS badge */
-.tms-badge {
-  position: absolute; top: 80px; right: 32px;
-  width: 52px; height: 52px; background: #CC2020;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-size: 15px; font-weight: 400;
-  color: var(--white); font-style: italic; letter-spacing: -0.03em;
-  z-index: 2;
-}
-
-.hero-content {
-  position: relative; z-index: 2;
-  padding: 0 48px 0; max-width: 1000px; width: 100%;
-}
-.hero-subtitle {
-  font-family: var(--font-mono); font-size: 11px; font-weight: 400;
-  color: var(--gold); letter-spacing: 0.22em; text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.hero-title-intro {
-  font-family: var(--font-display);
-  font-size: clamp(72px, 13vw, 160px);
-  font-weight: 400; line-height: 0.88;
-  letter-spacing: -0.01em;
-  color: var(--white);
-  text-shadow: 0 4px 40px rgba(0,0,0,0.6);
-}
-.hero-title-main {
-  font-family: var(--font-display);
-  font-size: clamp(72px, 13vw, 160px);
-  font-weight: 400; line-height: 0.88;
-  letter-spacing: -0.01em;
-  color: var(--gold);
-  text-shadow: 0 4px 60px rgba(196,146,40,0.4);
-  margin-bottom: 28px;
-}
-
-/* Date & info strip */
-.hero-strip {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 0; margin-bottom: 0;
-  border-top: 1px solid rgba(196,146,40,0.3);
-}
-.hero-strip-item {
-  font-family: var(--font-mono); font-size: 13px;
-  color: rgba(245,240,232,0.75); letter-spacing: 0.08em;
-}
-.hero-strip-item strong { color: var(--white); font-weight: 500; }
 
 /* Stats bar */
 .stats-bar {
@@ -253,19 +174,9 @@ nav {
   border: 1px solid var(--border); overflow: hidden;
   position: relative;
 }
-.host-photo-placeholder {
-  width: 100%; height: 100%;
-  background: linear-gradient(180deg, #1A1810 0%, #3D2A04 60%, #C49228 100%);
-  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
-  padding-bottom: 24px;
-}
-.host-photo-name {
-  font-family: var(--font-display); font-size: 28px; font-weight: 400;
-  color: var(--white); font-style: italic; text-align: center;
-}
-.host-photo-tag {
-  font-family: var(--font-mono); font-size: 10px; color: var(--gold);
-  letter-spacing: 0.2em; text-transform: uppercase; margin-top: 4px;
+.host-photo-frame img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  display: block; filter: sepia(0.08) brightness(0.95);
 }
 .host-badge {
   position: absolute; bottom: -14px; right: -14px;
@@ -526,7 +437,6 @@ footer {
 /* ── RESPONSIVE ──────────────────────────────────── */
 @media (max-width: 1024px) {
   nav { padding: 0 28px; }
-  .hero-content { padding: 0 28px; }
   .curriculum { padding: 56px 28px; }
   .host { padding: 56px 28px; gap: 40px; }
   .register { padding: 56px 28px; gap: 40px; }
@@ -545,14 +455,9 @@ footer {
   nav .nav-cta { display: none; }
   .hamburger { display: flex; }
 
-  .hero-content { padding: 0 20px; }
-  .hero-title-intro, .hero-title-main { font-size: clamp(60px, 18vw, 90px); }
-  .hero-strip { flex-direction: column; gap: 10px; align-items: flex-start; }
-  .hero-strip-item { font-size: 12px; }
   .stats-bar { flex-direction: column; }
   .stat-block { border-right: none; border-bottom: 1px solid rgba(8,8,6,0.2); padding: 16px 20px; }
   .stat-block:last-child { border-bottom: none; }
-  .tms-badge { top: 72px; right: 20px; width: 44px; height: 44px; font-size: 13px; }
 
   .curriculum { padding: 48px 20px; }
   .curriculum-grid { grid-template-columns: 1fr; }
@@ -598,20 +503,13 @@ footer {
   <a href="#register" style="color:var(--gold);font-weight:700;">→ Register Free</a>
 </div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="tms-badge"><em>TMS</em></div>
-  <div class="hero-content">
-    <div class="hero-subtitle">Introduction to Islam Apologetics</div>
-    <div class="hero-title-intro">Islamic</div>
-    <div class="hero-title-main">Dilemma</div>
-    <div class="hero-strip">
-      <span class="hero-strip-item"><strong>July 2026</strong> · 3-Day Live Event</span>
-      <span class="hero-strip-item">with <strong>Mannorr</strong> · The Mannorr Show</span>
-      <span class="hero-strip-item"><strong>15 Hours</strong> of total teaching</span>
-    </div>
-  </div>
+<!-- HERO BANNER — full-bleed, no overlays -->
+<div class="hero-banner">
+  <img
+    src="banner.jpg"
+    alt="Islamic Dilemma 2026 — 3 Days · 15 Hours · with Mannorr"
+    width="1920" height="1080"
+  >
 </div>
 
 <!-- STATS BAR -->
@@ -681,10 +579,7 @@ footer {
   <div class="host">
     <div class="host-photo-block">
       <div class="host-photo-frame">
-        <div class="host-photo-placeholder">
-          <div class="host-photo-name">Mannorr</div>
-          <div class="host-photo-tag">@_mannorr</div>
-        </div>
+        <img src="mannorr.jpg" alt="Mannorr — Host of The Mannorr Show">
       </div>
       <div class="host-badge">15 hrs<br>of teaching</div>
     </div>
